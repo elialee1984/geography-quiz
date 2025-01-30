@@ -20,43 +20,119 @@ const CountryNames = () => {
     getData();
   }, []);
 
+
   return (
     <div>
       <ol>
         {countries &&
           countries.map((country) => (
-            <li key={country.name.common}>
+
+            <li key={country.name.common} style={{marginBottom: "1.5rem"}}>
               <div>
                 <div>
                   {country.flag} {}
-                  <strong>{country.name.common}</strong>
+                  <u>
+                    <strong>{country.name.common}</strong>
+                  </u>
                   {country.name.common !== country.name.official && (
                     <span>
                       {" "}
                       (official name: <i>{country.name.official}</i>)
                     </span>
                   )}
+                  {country.cca3 ? <strong> [{country.cca3}]</strong> : ""}
                 </div>
                 <div>
-                  Capital:{" "}
+                  {`Capital: `}
                   {country.capital ? country.capital.join(", ") : "None"}
                 </div>
                 <div>
-                  Language(s):{" "}
+                  {`Region: `}
+                  {country.region ? country.region : "No region"}
+                  {country.subregion ? <span> ({country.subregion})</span> : ""}
+                </div>
+                <div>
+                  {`Language(s): `}
                   {country.languages
                     ? Object.values(country.languages).join(", ")
                     : "None"}
                 </div>
                 <div>
-                  Demonym: {country.demonyms ? country.demonyms.eng.m : "None"}
+                  {`Demonym: `}
+                  {country.demonyms ? country.demonyms.eng.m : "None"}
                 </div>
                 <div>
-                  Currency:{" "}
+                  {`Currency: `}
                   {country.currencies
                     ? Object.values(country.currencies)
-                        .map((currency) => currency.name)
+                        .map(
+                          (currency) => `${currency.name} (${currency.symbol})`
+                        )
                         .join(", ")
                     : "None"}
+                </div>
+                <div>
+                  {`Area: `}
+                  {country.area
+                    ? `${country.area.toLocaleString("en-US", {
+                        maximumFractionDigits: 0,
+                      })} sqm`
+                    : "keine Angabe"}
+                </div>
+                <div>
+                  {`Population: `}
+                  {country.population
+                    ? country.population.toLocaleString("en-US", {
+                        maximumFractionDigits: 0,
+                      })
+                    : "keine Angabe"}
+                </div>
+                <div>
+                  {`Top-level domain: `}
+                  {country.tld ? country.tld.join(", ") : "No tld"}
+                </div>
+                <div>
+                  {`Independent: `}
+                  {country.independent ? (
+                    <span style={{ color: "green" }}>yes</span>
+                  ) : (
+                    <span style={{ color: "red" }}>no</span>
+                  )}
+                </div>
+                <div>
+                  {`Landlocked: `}
+                  {country.landlocked ? (
+                    <span style={{ color: "green" }}>yes</span>
+                  ) : (
+                    <span style={{ color: "red" }}>no</span>
+                  )}
+                </div>
+                <div>
+                  {`Shares borders with `}
+                  {country.borders
+                    ? country.borders.join(", ")
+                    : "no other country"}
+                  .
+                </div>
+                <div>
+                  {country.car.side ? (
+                    <span>
+                      Car drives on the{" "}
+                      <span
+                        style={{
+                          color:
+                            country.car.side === "right"
+                              ? "lightblue"
+                              : "orange",
+                        }}
+                      >
+                        <strong>{country.car.side.toUpperCase()}</strong>
+                      </span>{" "}
+                      side of the road.
+                    </span>
+                  ) : (
+                    "Keine Angabe"
+                  )}
                 </div>
               </div>
             </li>
