@@ -10,6 +10,7 @@ import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
 import CountryStartOfWeek from "./CountryStartOfWeek";
 import CountryTimezones from "./CountryTimeZones";
+import CountryTopLevelDomain from "./CountryTopLevelDomain";
 
 const CountryCard = () => {
   const navigate = useNavigate();
@@ -64,11 +65,7 @@ const CountryCard = () => {
                 <CountryCurrencies country={country} />
                 <CountryLandArea country={country} />
                 <CountryPopulation country={country} />
-
-                <div>
-                  {`Top-level domain: `}
-                  {country.tld ? country.tld.join(", ") : "No tld"}
-                </div>
+                <CountryTopLevelDomain country={country} />
                 <div>
                   {`Independent: `}
                   {country.independent ? (
