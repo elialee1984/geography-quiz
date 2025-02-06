@@ -9,7 +9,7 @@ const CountryPopulation = ({ country }) => {
           ? country.population.toLocaleString("en-US", {
               maximumFractionDigits: 0,
             })
-          : "no data"}
+          : <i>No data</i>}
       </div>
     </div>
   );

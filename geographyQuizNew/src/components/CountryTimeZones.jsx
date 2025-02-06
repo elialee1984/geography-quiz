@@ -5,7 +5,7 @@ const CountryTimezones = ({ country }) => {
     <div>
       <div>
         {`Time Zone: `}
-        {country.timezones ? country.timezones : "no data"}
+        {country.timezones ? country.timezones : <i>No data</i>}
       </div>
     </div>
   );

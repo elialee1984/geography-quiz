@@ -5,7 +5,7 @@ const CountryRegions = ({ country }) => {
     <div>
       <div>
         {`Region: `}
-        {country.region ? country.region : "No region"}
+        {country.region ? country.region : <i>No data</i>}
         {country.subregion ? <span> ({country.subregion})</span> : ""}
       </div>
     </div>

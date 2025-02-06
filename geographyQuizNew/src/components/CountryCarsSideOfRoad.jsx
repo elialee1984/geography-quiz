@@ -17,7 +17,7 @@ const CountryCarsSideOfRoad = ({ country }) => {
             side of the road.
           </span>
         ) : (
-          "no data"
+          <i>No data</i>
         )}
       </div>
     </div>

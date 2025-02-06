@@ -12,7 +12,7 @@ const CountryCurrencies = ({ country }) => {
                   {currency.name} ({currency.symbol})
                 </li>
               ))
-            : "None"}
+            : <i>None</i>}
         </ul>
       </div>
     </div>

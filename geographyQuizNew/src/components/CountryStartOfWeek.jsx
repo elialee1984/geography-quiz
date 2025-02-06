@@ -8,7 +8,7 @@ const CountryStartOfWeek = ({ country }) => {
         {country.startOfWeek
           ? country.startOfWeek.charAt(0).toUpperCase() +
             country.startOfWeek.slice(1)
-          : "no data"}
+          : <i>No data</i>}
       </div>
     </div>
   );

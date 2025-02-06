@@ -13,7 +13,7 @@ const CountryGoogleMapsLink = ({ country }) => {
             Google Maps
           </a>
         ) : (
-          "no data"
+          <i>No data</i>
         )}
       </div>
     </div>

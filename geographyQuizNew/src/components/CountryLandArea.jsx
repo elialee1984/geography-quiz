@@ -11,7 +11,7 @@ const CountryLandArea = ({ country }) => {
             })} sq km (${(country.area * 0.386102).toLocaleString("en-US", {
               maximumFractionDigits: 0,
             })} sq mi)`
-          : "no data"}
+          : <i>No data</i>}
       </div>
     </div>
   );

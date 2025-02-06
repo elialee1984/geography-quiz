@@ -10,7 +10,7 @@ const CountryLanguages = ({ country }) => {
             ? Object.values(country.languages).map((language, index) => (
                 <li key={index}>{language}</li>
               ))
-            : "None"}
+            : <i>None</i>}
         </ul>
       </div>
     </div>

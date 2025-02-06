@@ -5,7 +5,7 @@ const CountryDemonyms = ({ country }) => {
     <div>
       <div>
         {`Demonym: `}
-        {country.demonyms ? country.demonyms.eng.m : "None"}
+        {country.demonyms ? country.demonyms.eng.m : <i>None</i>}
       </div>
     </div>
   );

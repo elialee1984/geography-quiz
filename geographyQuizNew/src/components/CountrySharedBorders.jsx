@@ -4,8 +4,7 @@ const CountrySharedBorders = ({ country }) => {
   return (
     <div>
       <div>
-        {`Shares borders with `}
-        {country.borders ? country.borders.join(", ") : "no other country"}.
+        {country.borders ? `Shares borders with {country.borders.join(", ")}` : <i>No shared borders</i>}.
       </div>
     </div>
   );

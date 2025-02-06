@@ -5,7 +5,7 @@ const CountryTopLevelDomain = ({ country }) => {
     <div>
       <div>
         {`Top-level domain: `}
-        {country.tld ? country.tld.join(", ") : "No tld"}
+        {country.tld ? country.tld.join(", ") : <i>No data</i>}
       </div>
     </div>
   );
