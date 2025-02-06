@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CountryNames = () => {
+  const navigate = useNavigate();
   const [countries, setCountries] = useState("");
 
   useEffect(() => {
@@ -20,14 +22,15 @@ const CountryNames = () => {
     getData();
   }, []);
 
-
   return (
     <div>
+      <button type="button" onClick={() => navigate("/")}>
+        Back to main page
+      </button>
       <ol>
         {countries &&
           countries.map((country) => (
-
-            <li key={country.name.common} style={{marginBottom: "1.5rem"}}>
+            <li key={country.name.common} style={{ marginBottom: "1.5rem" }}>
               <div>
                 <div>
                   {country.flag} {}
