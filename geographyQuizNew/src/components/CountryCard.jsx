@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CountryCapitals from "./CountryCapitals";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
+import CountryIndependencyStatus from "./CountryIndependencyStatus";
 import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
 import CountryPopulation from "./CountryPopulation";
@@ -66,14 +67,8 @@ const CountryCard = () => {
                 <CountryLandArea country={country} />
                 <CountryPopulation country={country} />
                 <CountryTopLevelDomain country={country} />
-                <div>
-                  {`Independent: `}
-                  {country.independent ? (
-                    <span style={{ color: "green" }}>yes</span>
-                  ) : (
-                    <span style={{ color: "red" }}>no</span>
-                  )}
-                </div>
+                <CountryIndependencyStatus country={country} />
+
                 <div>
                   {`Landlocked: `}
                   {country.landlocked ? (
