@@ -1,5 +1,5 @@
 import "./App.css";
-import CountryNames from "./components/countryNames";
+import CountryNames from "./components/CountryNames";
 
 const App = () => {
   return (
