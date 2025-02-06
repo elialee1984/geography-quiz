@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import CountryCapitals from "./CountryCapitals.jsx";
+import CountryDemonyms from "./CountryDemonyms.jsx";
+
 const CountryNames = () => {
   const navigate = useNavigate();
   const [countries, setCountries] = useState("");
@@ -46,17 +49,23 @@ const CountryNames = () => {
                   {country.cca3 ? <strong> [{country.cca3}]</strong> : ""}
                 </div>
                 <div>
-                  {`Demonym: `}
-                  {country.demonyms ? country.demonyms.eng.m : "None"}
+                  {/* {`Demonym: `}
+                  {country.demonyms ? country.demonyms.eng.m : "None"} */}
+                  <CountryDemonyms country={country}/>
                 </div>
-                <div>
-                  {`Capital: `}
-                  {country.capital ? country.capital.join(", ") : "None"}
-                </div>
+                <CountryCapitals country={country} />
                 <div>
                   {`Region: `}
                   {country.region ? country.region : "No region"}
                   {country.subregion ? <span> ({country.subregion})</span> : ""}
+                </div>
+                <div>
+                  {`Time Zone: `}
+                  {country.timezones ? country.timezones : "no data"}
+                </div>
+                <div>
+                  {`Start of the Week: `}
+                  {country.startOfWeek ? country.startOfWeek.charAt(0).toUpperCase() + country.startOfWeek.slice(1) : "no data"}
                 </div>
                 <div>
                   {`Language(s): `}
@@ -151,10 +160,17 @@ const CountryNames = () => {
                   )}
                 </div>
                 <div>
-                {`Google Maps: `}
-                  {country.maps.googleMaps
-                    ? <a href={country.maps.googleMaps} target="_blank" rel="noopener noreferrer">HERE</a>
-                    : "no data"}
+                  {country.maps.googleMaps ? (
+                    <a
+                      href={country.maps.googleMaps}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Google Maps
+                    </a>
+                  ) : (
+                    "no data"
+                  )}
                 </div>
               </div>
             </li>
