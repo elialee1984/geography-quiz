@@ -7,7 +7,7 @@ import CountryDemonyms from "./CountryDemonyms";
 import CountryGoogleMapsLink from "./CountryGoogleMapsLink";
 import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
-import CountryNames from "./CountryNames";
+import CountryName from "./CountryName";
 import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
 import CountrySharedBorders from "./CountrySharedBorders";
@@ -49,7 +49,7 @@ const CountryCard = () => {
           countries.map((country) => (
             <li key={country.name.common} style={{ marginBottom: "1.5rem" }}>
               <div>
-                <CountryNames country={country} />
+                <CountryName country={country} />
                 <CountryDemonyms country={country} />
                 <CountryCapitals country={country} />
                 <CountryRegions country={country} />
