@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CountryCapitals from "./CountryCapitals";
-import CountryCarsSideOfRoad from "./CountryCarsSideOfRoad";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
 import CountryGoogleMapsLink from "./CountryGoogleMapsLink";
@@ -13,6 +12,7 @@ import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
 import CountrySharedBorders from "./CountrySharedBorders";
 import CountryStartOfWeek from "./CountryStartOfWeek";
+import CountryStatusCarsSideOfRoad from "./CountryStatusCarsSideOfRoad";
 import CountryStatusIndependent from "./CountryStatusIndependent";
 import CountryStatusLandlocked from "./CountryStatusLandlocked";
 import CountryTimezones from "./CountryTimeZones";
@@ -63,7 +63,7 @@ const CountryCard = () => {
                 <CountryStatusIndependent country={country} />
                 <CountryStatusLandlocked country={country} />
                 <CountrySharedBorders country={country} />
-                <CountryCarsSideOfRoad country={country} />
+                <CountryStatusCarsSideOfRoad country={country} />
                 <CountryGoogleMapsLink country={country} />
               </div>
             </li>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CountryCarsSideOfRoad = ({ country }) => {
+const CountryStatusCarsSideOfRoad = ({ country }) => {
   return (
     <div>
       <div>
@@ -24,4 +24,4 @@ const CountryCarsSideOfRoad = ({ country }) => {
   );
 };
 
-export default CountryCarsSideOfRoad;
+export default CountryStatusCarsSideOfRoad;
