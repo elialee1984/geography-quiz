@@ -8,6 +8,7 @@ import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
 import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
+import CountrySharedBorders from "./CountrySharedBorders";
 import CountryStartOfWeek from "./CountryStartOfWeek";
 import CountryStatusIndependent from "./CountryStatusIndependent";
 import CountryStatusLandlocked from "./CountryStatusLandlocked";
@@ -70,14 +71,7 @@ const CountryCard = () => {
                 <CountryTopLevelDomain country={country} />
                 <CountryStatusIndependent country={country} />
                 <CountryStatusLandlocked country={country} />
-
-                <div>
-                  {`Shares borders with `}
-                  {country.borders
-                    ? country.borders.join(", ")
-                    : "no other country"}
-                  .
-                </div>
+                <CountrySharedBorders country={country} />
                 <div>
                   {country.car.side ? (
                     <span>
