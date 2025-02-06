@@ -10,6 +10,7 @@ import CountryLanguages from "./CountryLanguages";
 import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
 import CountryStartOfWeek from "./CountryStartOfWeek";
+import CountryStatusLandlocked from "./CountryStatusLandlocked";
 import CountryTimezones from "./CountryTimeZones";
 import CountryTopLevelDomain from "./CountryTopLevelDomain";
 
@@ -68,15 +69,8 @@ const CountryCard = () => {
                 <CountryPopulation country={country} />
                 <CountryTopLevelDomain country={country} />
                 <CountryIndependencyStatus country={country} />
+                <CountryStatusLandlocked country={country} />
 
-                <div>
-                  {`Landlocked: `}
-                  {country.landlocked ? (
-                    <span style={{ color: "green" }}>yes</span>
-                  ) : (
-                    <span style={{ color: "red" }}>no</span>
-                  )}
-                </div>
                 <div>
                   {`Shares borders with `}
                   {country.borders
