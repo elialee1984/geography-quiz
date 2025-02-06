@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CountryCapitals from "./CountryCapitals.jsx";
 import CountryDemonyms from "./CountryDemonyms.jsx";
 import CountryRegions from "./CountryRegions.jsx";
+import CountryTimezones from "./CountryTimeZones.jsx";
 
 const CountryCard = () => {
   const navigate = useNavigate();
@@ -52,10 +53,7 @@ const CountryCard = () => {
                 <CountryDemonyms country={country} />
                 <CountryCapitals country={country} />
                 <CountryRegions country={country} />
-                <div>
-                  {`Time Zone: `}
-                  {country.timezones ? country.timezones : "no data"}
-                </div>
+                <CountryTimezones country={country} />
                 <div>
                   {`Start of the Week: `}
                   {country.startOfWeek
