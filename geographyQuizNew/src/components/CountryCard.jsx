@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CountryCapitals from "./CountryCapitals";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
+import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
 import CountryRegions from "./CountryRegions";
 import CountryStartOfWeek from "./CountryStartOfWeek";
@@ -60,20 +61,8 @@ const CountryCard = () => {
                 <CountryStartOfWeek country={country} />
                 <CountryLanguages country={country} />
                 <CountryCurrencies country={country} />
+                <CountryLandArea country={country} />
 
-                <div>
-                  {`Area: `}
-                  {country.area
-                    ? `${country.area.toLocaleString("en-US", {
-                        maximumFractionDigits: 0,
-                      })} sq km (${(country.area * 0.386102).toLocaleString(
-                        "en-US",
-                        {
-                          maximumFractionDigits: 0,
-                        }
-                      )} sq mi)`
-                    : "no data"}
-                </div>
                 <div>
                   {`Population: `}
                   {country.population
