@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CountryCapitals from "./CountryCapitals.jsx";
 import CountryDemonyms from "./CountryDemonyms.jsx";
 
-const CountryNames = () => {
+const CountryCard = () => {
   const navigate = useNavigate();
   const [countries, setCountries] = useState("");
 
@@ -48,11 +48,7 @@ const CountryNames = () => {
                   )}
                   {country.cca3 ? <strong> [{country.cca3}]</strong> : ""}
                 </div>
-                <div>
-                  {/* {`Demonym: `}
-                  {country.demonyms ? country.demonyms.eng.m : "None"} */}
-                  <CountryDemonyms country={country}/>
-                </div>
+                <CountryDemonyms country={country} />
                 <CountryCapitals country={country} />
                 <div>
                   {`Region: `}
@@ -65,7 +61,10 @@ const CountryNames = () => {
                 </div>
                 <div>
                   {`Start of the Week: `}
-                  {country.startOfWeek ? country.startOfWeek.charAt(0).toUpperCase() + country.startOfWeek.slice(1) : "no data"}
+                  {country.startOfWeek
+                    ? country.startOfWeek.charAt(0).toUpperCase() +
+                      country.startOfWeek.slice(1)
+                    : "no data"}
                 </div>
                 <div>
                   {`Language(s): `}
@@ -180,4 +179,4 @@ const CountryNames = () => {
   );
 };
 
-export default CountryNames;
+export default CountryCard;

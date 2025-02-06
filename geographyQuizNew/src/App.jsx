@@ -6,14 +6,14 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import CountryNames from "./components/CountryNames";
+import CountryCard from "./components/CountryCard";
 import MainPage from "./components/MainPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<MainPage />} />
-      <Route path="/countriesComplete" element={<CountryNames />} />
+      <Route path="/countriesComplete" element={<CountryCard />} />
     </Route>
   )
 );
