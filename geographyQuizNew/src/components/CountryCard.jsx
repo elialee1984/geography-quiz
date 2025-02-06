@@ -6,6 +6,7 @@ import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
 import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
+import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
 import CountryStartOfWeek from "./CountryStartOfWeek";
 import CountryTimezones from "./CountryTimeZones";
@@ -62,15 +63,8 @@ const CountryCard = () => {
                 <CountryLanguages country={country} />
                 <CountryCurrencies country={country} />
                 <CountryLandArea country={country} />
+                <CountryPopulation country={country} />
 
-                <div>
-                  {`Population: `}
-                  {country.population
-                    ? country.population.toLocaleString("en-US", {
-                        maximumFractionDigits: 0,
-                      })
-                    : "no data"}
-                </div>
                 <div>
                   {`Top-level domain: `}
                   {country.tld ? country.tld.join(", ") : "No tld"}
