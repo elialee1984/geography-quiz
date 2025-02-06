@@ -5,6 +5,7 @@ import CountryCapitals from "./CountryCapitals";
 import CountryCarsSideOfRoad from "./CountryCarsSideOfRoad";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
+import CountryGoogleMapsLink from "./CountryGoogleMapsLink";
 import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
 import CountryPopulation from "./CountryPopulation";
@@ -74,19 +75,7 @@ const CountryCard = () => {
                 <CountryStatusLandlocked country={country} />
                 <CountrySharedBorders country={country} />
                 <CountryCarsSideOfRoad country={country} />
-                <div>
-                  {country.maps.googleMaps ? (
-                    <a
-                      href={country.maps.googleMaps}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Google Maps
-                    </a>
-                  ) : (
-                    "no data"
-                  )}
-                </div>
+                <CountryGoogleMapsLink country={country} />
               </div>
             </li>
           ))}
