@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import CountryCapitals from "./CountryCapitals.jsx";
-import CountryDemonyms from "./CountryDemonyms.jsx";
-import CountryRegions from "./CountryRegions.jsx";
-import CountryTimezones from "./CountryTimeZones.jsx";
+import CountryCapitals from "./CountryCapitals";
+import CountryDemonyms from "./CountryDemonyms";
+import CountryRegions from "./CountryRegions";
+import CountryStartOfWeek from "./CountryStartOfWeek";
+import CountryTimezones from "./CountryTimeZones";
 
 const CountryCard = () => {
   const navigate = useNavigate();
@@ -54,13 +55,7 @@ const CountryCard = () => {
                 <CountryCapitals country={country} />
                 <CountryRegions country={country} />
                 <CountryTimezones country={country} />
-                <div>
-                  {`Start of the Week: `}
-                  {country.startOfWeek
-                    ? country.startOfWeek.charAt(0).toUpperCase() +
-                      country.startOfWeek.slice(1)
-                    : "no data"}
-                </div>
+                <CountryStartOfWeek country={country} />
                 <div>
                   {`Language(s): `}
                   <ul>
