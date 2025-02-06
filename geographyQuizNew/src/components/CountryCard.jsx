@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CountryCapitals from "./CountryCapitals";
+import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
 import CountryLanguages from "./CountryLanguages";
 import CountryRegions from "./CountryRegions";
@@ -58,20 +59,8 @@ const CountryCard = () => {
                 <CountryTimezones country={country} />
                 <CountryStartOfWeek country={country} />
                 <CountryLanguages country={country} />
-                <div>
-                  {`Currency: `}
-                  <ul>
-                    {country.currencies
-                      ? Object.values(country.currencies).map(
-                          (currency, index) => (
-                            <li key={index}>
-                              {currency.name} ({currency.symbol})
-                            </li>
-                          )
-                        )
-                      : "None"}
-                  </ul>
-                </div>
+                <CountryCurrencies country={country} />
+
                 <div>
                   {`Area: `}
                   {country.area
