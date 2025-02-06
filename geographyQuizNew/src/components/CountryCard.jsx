@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import CountryCapitals from "./CountryCapitals";
 import CountryDemonyms from "./CountryDemonyms";
+import CountryLanguages from "./CountryLanguages";
 import CountryRegions from "./CountryRegions";
 import CountryStartOfWeek from "./CountryStartOfWeek";
 import CountryTimezones from "./CountryTimeZones";
@@ -56,16 +57,7 @@ const CountryCard = () => {
                 <CountryRegions country={country} />
                 <CountryTimezones country={country} />
                 <CountryStartOfWeek country={country} />
-                <div>
-                  {`Language(s): `}
-                  <ul>
-                    {country.languages
-                      ? Object.values(country.languages).map(
-                          (language, index) => <li key={index}>{language}</li>
-                        )
-                      : "None"}
-                  </ul>
-                </div>
+                <CountryLanguages country={country} />
                 <div>
                   {`Currency: `}
                   <ul>
