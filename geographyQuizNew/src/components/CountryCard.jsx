@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import CountryCapitals from "./CountryCapitals.jsx";
 import CountryDemonyms from "./CountryDemonyms.jsx";
+import CountryRegions from "./CountryRegions.jsx";
 
 const CountryCard = () => {
   const navigate = useNavigate();
@@ -50,11 +51,7 @@ const CountryCard = () => {
                 </div>
                 <CountryDemonyms country={country} />
                 <CountryCapitals country={country} />
-                <div>
-                  {`Region: `}
-                  {country.region ? country.region : "No region"}
-                  {country.subregion ? <span> ({country.subregion})</span> : ""}
-                </div>
+                <CountryRegions country={country} />
                 <div>
                   {`Time Zone: `}
                   {country.timezones ? country.timezones : "no data"}
