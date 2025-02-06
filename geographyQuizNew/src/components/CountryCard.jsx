@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CountryCapitals from "./CountryCapitals";
+import CountryCarsSideOfRoad from "./CountryCarsSideOfRoad";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
 import CountryLandArea from "./CountryLandArea";
@@ -72,26 +73,7 @@ const CountryCard = () => {
                 <CountryStatusIndependent country={country} />
                 <CountryStatusLandlocked country={country} />
                 <CountrySharedBorders country={country} />
-                <div>
-                  {country.car.side ? (
-                    <span>
-                      Car drives on the{" "}
-                      <span
-                        style={{
-                          color:
-                            country.car.side === "right"
-                              ? "lightblue"
-                              : "orange",
-                        }}
-                      >
-                        <strong>{country.car.side.toUpperCase()}</strong>
-                      </span>{" "}
-                      side of the road.
-                    </span>
-                  ) : (
-                    "no data"
-                  )}
-                </div>
+                <CountryCarsSideOfRoad country={country} />
                 <div>
                   {country.maps.googleMaps ? (
                     <a
