@@ -1,6 +1,6 @@
 import React from "react";
 
-const CountryIndependencyStatus = ({ country }) => {
+const CountryStatusIndependent = ({ country }) => {
   return (
     <div>
       <div>
@@ -15,4 +15,4 @@ const CountryIndependencyStatus = ({ country }) => {
   );
 };
 
-export default CountryIndependencyStatus;
+export default CountryStatusIndependent;

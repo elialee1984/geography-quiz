@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import CountryCapitals from "./CountryCapitals";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
-import CountryIndependencyStatus from "./CountryIndependencyStatus";
 import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
 import CountryPopulation from "./CountryPopulation";
 import CountryRegions from "./CountryRegions";
 import CountryStartOfWeek from "./CountryStartOfWeek";
+import CountryStatusIndependent from "./CountryStatusIndependent";
 import CountryStatusLandlocked from "./CountryStatusLandlocked";
 import CountryTimezones from "./CountryTimeZones";
 import CountryTopLevelDomain from "./CountryTopLevelDomain";
@@ -68,7 +68,7 @@ const CountryCard = () => {
                 <CountryLandArea country={country} />
                 <CountryPopulation country={country} />
                 <CountryTopLevelDomain country={country} />
-                <CountryIndependencyStatus country={country} />
+                <CountryStatusIndependent country={country} />
                 <CountryStatusLandlocked country={country} />
 
                 <div>
