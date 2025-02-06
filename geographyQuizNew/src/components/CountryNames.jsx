@@ -46,6 +46,10 @@ const CountryNames = () => {
                   {country.cca3 ? <strong> [{country.cca3}]</strong> : ""}
                 </div>
                 <div>
+                  {`Demonym: `}
+                  {country.demonyms ? country.demonyms.eng.m : "None"}
+                </div>
+                <div>
                   {`Capital: `}
                   {country.capital ? country.capital.join(", ") : "None"}
                 </div>
@@ -56,31 +60,40 @@ const CountryNames = () => {
                 </div>
                 <div>
                   {`Language(s): `}
-                  {country.languages
-                    ? Object.values(country.languages).join(", ")
-                    : "None"}
-                </div>
-                <div>
-                  {`Demonym: `}
-                  {country.demonyms ? country.demonyms.eng.m : "None"}
+                  <ul>
+                    {country.languages
+                      ? Object.values(country.languages).map(
+                          (language, index) => <li key={index}>{language}</li>
+                        )
+                      : "None"}
+                  </ul>
                 </div>
                 <div>
                   {`Currency: `}
-                  {country.currencies
-                    ? Object.values(country.currencies)
-                        .map(
-                          (currency) => `${currency.name} (${currency.symbol})`
+                  <ul>
+                    {country.currencies
+                      ? Object.values(country.currencies).map(
+                          (currency, index) => (
+                            <li key={index}>
+                              {currency.name} ({currency.symbol})
+                            </li>
+                          )
                         )
-                        .join(", ")
-                    : "None"}
+                      : "None"}
+                  </ul>
                 </div>
                 <div>
                   {`Area: `}
                   {country.area
                     ? `${country.area.toLocaleString("en-US", {
                         maximumFractionDigits: 0,
-                      })} sqm`
-                    : "keine Angabe"}
+                      })} sq km (${(country.area * 0.386102).toLocaleString(
+                        "en-US",
+                        {
+                          maximumFractionDigits: 0,
+                        }
+                      )} sq mi)`
+                    : "no data"}
                 </div>
                 <div>
                   {`Population: `}
@@ -88,7 +101,7 @@ const CountryNames = () => {
                     ? country.population.toLocaleString("en-US", {
                         maximumFractionDigits: 0,
                       })
-                    : "keine Angabe"}
+                    : "no data"}
                 </div>
                 <div>
                   {`Top-level domain: `}
@@ -134,8 +147,14 @@ const CountryNames = () => {
                       side of the road.
                     </span>
                   ) : (
-                    "Keine Angabe"
+                    "no data"
                   )}
+                </div>
+                <div>
+                {`Google Maps: `}
+                  {country.maps.googleMaps
+                    ? <a href={country.maps.googleMaps} target="_blank" rel="noopener noreferrer">HERE</a>
+                    : "no data"}
                 </div>
               </div>
             </li>
