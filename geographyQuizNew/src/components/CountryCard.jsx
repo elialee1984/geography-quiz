@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CountryCapitals from "./CountryCapitals";
 import CountryCurrencies from "./CountryCurrencies";
 import CountryDemonyms from "./CountryDemonyms";
+import CountryFlag from "./CountryFlag";
 import CountryGoogleMapsLink from "./CountryGoogleMapsLink";
 import CountryLandArea from "./CountryLandArea";
 import CountryLanguages from "./CountryLanguages";
@@ -84,8 +85,8 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
               </strong>
               <CountryName country={country} />
             </span>
-            <CountryDemonyms country={country} />
             <CountryCapitals country={country} />
+            <CountryDemonyms country={country} />
             <CountryRegions country={country} />
             <CountryTimezones country={country} />
             <CountryStartOfWeek country={country} />
@@ -99,9 +100,16 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
             <CountrySharedBorders country={country} />
             <CountryStatusCarsSideOfRoad country={country} />
             <CountryGoogleMapsLink country={country} />
+            <CountryFlag country={country} />
           </div>
         </div>
       ))}
+       <Pagination
+        currentPageState={currentPageState}
+        setCurrentPageState={setCurrentPageState}
+        countries={countries}
+        countriesPerPage={countriesPerPage}
+      />
     </div>
   );
 };
