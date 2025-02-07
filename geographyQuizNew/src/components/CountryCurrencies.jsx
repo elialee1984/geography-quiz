@@ -8,7 +8,7 @@ const CountryCurrencies = ({ country }) => {
         {country.currencies ? (
           Array.isArray(Object.values(country.currencies)) &&
           Object.values(country.currencies).length > 1 ? (
-            <ul>
+            <ul style={{ margin: 0 }}>
               {Object.values(country.currencies).map((currency, index) => (
                 <li key={index}>
                   {currency.name} ({currency.symbol})

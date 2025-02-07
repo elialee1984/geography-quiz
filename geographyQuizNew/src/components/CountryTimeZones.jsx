@@ -7,7 +7,7 @@ const CountryTimezones = ({ country }) => {
         {`Time Zone: `}
         {country.timezones ? (
           Array.isArray(country.timezones) && country.timezones.length > 1 ? (
-            <ul>
+            <ul style={{ margin: 0 }}>
               {country.timezones.map((timezone, index) => (
                 <li key={index}>{timezone}</li>
               ))}
