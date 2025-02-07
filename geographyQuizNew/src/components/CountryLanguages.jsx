@@ -5,12 +5,14 @@ const CountryLanguages = ({ country }) => {
     <div>
       <div>
         {`Language(s): `}
-        <ul>
-          {country.languages
-            ? Object.values(country.languages).map((language, index) => (
-                <li key={index}>{language}</li>
-              ))
-            : <i>None</i>}
+        <ul style={{ margin: 0 }}>
+          {country.languages ? (
+            Object.values(country.languages).map((language, index) => (
+              <li key={index}>{language}</li>
+            ))
+          ) : (
+            <i>None</i>
+          )}
         </ul>
       </div>
     </div>
