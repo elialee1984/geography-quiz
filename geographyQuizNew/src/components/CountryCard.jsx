@@ -17,10 +17,13 @@ import CountryStatusIndependent from "./CountryStatusIndependent";
 import CountryStatusLandlocked from "./CountryStatusLandlocked";
 import CountryTimezones from "./CountryTimeZones";
 import CountryTopLevelDomain from "./CountryTopLevelDomain";
+import Pagination from "./navigation/Pagination";
 
-const CountryCard = () => {
+const CountryCard = ({ currentPage, countriesPerPage }) => {
   const navigate = useNavigate();
-  const [countries, setCountries] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [currentCountries, setCurrentCountries] = useState([]);
+  const [currentPageState, setCurrentPageState] = useState(currentPage);
 
   useEffect(() => {
     const getData = async () => {
@@ -39,36 +42,58 @@ const CountryCard = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    const indexOfLastCountry = currentPageState * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    setCurrentCountries(
+      countries.slice(indexOfFirstCountry, indexOfLastCountry)
+    );
+  }, [countries, currentPageState, countriesPerPage]);
+
   return (
     <div>
-      <button type="button" onClick={() => navigate("/")}>
-        Back to main page
-      </button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "1rem",
+        }}
+      >
+        <button type="button" onClick={() => navigate("/")}>
+          Back to main page
+        </button>
+      </div>
+      <Pagination
+        currentPageState={currentPageState}
+        setCurrentPageState={setCurrentPageState}
+        countries={countries}
+        countriesPerPage={countriesPerPage}
+      />
       <ol>
-        {countries &&
-          countries.map((country) => (
-            <li key={country.name.common} style={{ marginBottom: "1.5rem" }}>
-              <div>
-                <CountryName country={country} />
-                <CountryDemonyms country={country} />
-                <CountryCapitals country={country} />
-                <CountryRegions country={country} />
-                <CountryTimezones country={country} />
-                <CountryStartOfWeek country={country} />
-                <CountryLanguages country={country} />
-                <CountryCurrencies country={country} />
-                <CountryLandArea country={country} />
-                <CountryPopulation country={country} />
-                <CountryTopLevelDomain country={country} />
-                <CountryStatusIndependent country={country} />
-                <CountryStatusLandlocked country={country} />
-                <CountrySharedBorders country={country} />
-                <CountryStatusCarsSideOfRoad country={country} />
-                <CountryGoogleMapsLink country={country} />
-              </div>
-            </li>
-          ))}
+        {currentCountries.map((country) => (
+          <li key={country.name.common} style={{ marginBottom: "1.5rem" }}>
+            <div>
+              <CountryName country={country} />
+              <CountryDemonyms country={country} />
+              <CountryCapitals country={country} />
+              <CountryRegions country={country} />
+              <CountryTimezones country={country} />
+              <CountryStartOfWeek country={country} />
+              <CountryLanguages country={country} />
+              <CountryCurrencies country={country} />
+              <CountryLandArea country={country} />
+              <CountryPopulation country={country} />
+              <CountryTopLevelDomain country={country} />
+              <CountryStatusIndependent country={country} />
+              <CountryStatusLandlocked country={country} />
+              <CountrySharedBorders country={country} />
+              <CountryStatusCarsSideOfRoad country={country} />
+              <CountryGoogleMapsLink country={country} />
+            </div>
+          </li>
+        ))}
       </ol>
+      {/* Pagination controls will go here */}
     </div>
   );
 };
