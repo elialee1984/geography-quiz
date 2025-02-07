@@ -52,12 +52,16 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     const indexOfLastCountry = currentPageState * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const filteredCountries = countries.filter((country) => {
-      const isIndependent = showIndependent ? country.independent : true;
-      const isNotIndependent = showNonIndependent ? !country.independent : true;
+      const isIndependent = showIndependent && !showNonIndependent;
+      const isNotIndependent = showNonIndependent && !showIndependent;
       const isLandlocked = showLandlocked ? country.landlocked : true;
       const isNotLandlocked = showNonLandlocked ? !country.landlocked : true;
+
       return (
-        isIndependent && isNotIndependent && isLandlocked && isNotLandlocked
+        (isIndependent ? country.independent : true) &&
+        (isNotIndependent ? !country.independent : true) &&
+        isLandlocked &&
+        isNotLandlocked
       );
     });
 

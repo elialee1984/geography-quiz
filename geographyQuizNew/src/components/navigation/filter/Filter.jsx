@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 const Filter = ({
   showIndependent,
@@ -17,18 +17,18 @@ const Filter = ({
     setIsOpen(!isOpen);
   };
 
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
+//   const handleClickOutside = (event) => {
+//     if (menuRef.current && !menuRef.current.contains(event.target)) {
+//       setIsOpen(false);
+//     }
+//   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+//   useEffect(() => {
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, []);
 
   return (
     <div className="menu-container" ref={menuRef}>
