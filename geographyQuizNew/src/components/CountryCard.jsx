@@ -69,31 +69,39 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         countries={countries}
         countriesPerPage={countriesPerPage}
       />
-      <ol>
-        {currentCountries.map((country) => (
-          <li key={country.name.common} style={{ marginBottom: "1.5rem" }}>
-            <div>
+
+      {currentCountries.map((country, index) => (
+        <div
+          key={country.name.common}
+          style={{
+            marginBottom: "1.5rem",
+          }}
+        >
+          <div>
+            <span style={{ display: "inline-flex", alignItems: "center" }}>
+              <strong>
+                {(currentPageState - 1) * countriesPerPage + index + 1}.
+              </strong>
               <CountryName country={country} />
-              <CountryDemonyms country={country} />
-              <CountryCapitals country={country} />
-              <CountryRegions country={country} />
-              <CountryTimezones country={country} />
-              <CountryStartOfWeek country={country} />
-              <CountryLanguages country={country} />
-              <CountryCurrencies country={country} />
-              <CountryLandArea country={country} />
-              <CountryPopulation country={country} />
-              <CountryTopLevelDomain country={country} />
-              <CountryStatusIndependent country={country} />
-              <CountryStatusLandlocked country={country} />
-              <CountrySharedBorders country={country} />
-              <CountryStatusCarsSideOfRoad country={country} />
-              <CountryGoogleMapsLink country={country} />
-            </div>
-          </li>
-        ))}
-      </ol>
-      {/* Pagination controls will go here */}
+            </span>
+            <CountryDemonyms country={country} />
+            <CountryCapitals country={country} />
+            <CountryRegions country={country} />
+            <CountryTimezones country={country} />
+            <CountryStartOfWeek country={country} />
+            <CountryLanguages country={country} />
+            <CountryCurrencies country={country} />
+            <CountryLandArea country={country} />
+            <CountryPopulation country={country} />
+            <CountryTopLevelDomain country={country} />
+            <CountryStatusIndependent country={country} />
+            <CountryStatusLandlocked country={country} />
+            <CountrySharedBorders country={country} />
+            <CountryStatusCarsSideOfRoad country={country} />
+            <CountryGoogleMapsLink country={country} />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
