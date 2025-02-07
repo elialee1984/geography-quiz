@@ -19,12 +19,17 @@ import CountryStatusLandlocked from "./CountryStatusLandlocked";
 import CountryTimezones from "./CountryTimeZones";
 import CountryTopLevelDomain from "./CountryTopLevelDomain";
 import Pagination from "./navigation/Pagination";
+import Filter from "./navigation/filter/Filter";
 
 const CountryCard = ({ currentPage, countriesPerPage }) => {
   const navigate = useNavigate();
   const [countries, setCountries] = useState([]);
   const [currentCountries, setCurrentCountries] = useState([]);
   const [currentPageState, setCurrentPageState] = useState(currentPage);
+  const [showIndependent, setShowIndependent] = useState(true);
+  const [showNonIndependent, setShowNonIndependent] = useState(false);
+  const [showLandlocked, setShowLandlocked] = useState(false);
+  const [showNonLandlocked, setShowNonLandlocked] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -46,10 +51,28 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   useEffect(() => {
     const indexOfLastCountry = currentPageState * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const filteredCountries = countries.filter((country) => {
+      const isIndependent = showIndependent ? country.independent : true;
+      const isNotIndependent = showNonIndependent ? !country.independent : true;
+      const isLandlocked = showLandlocked ? country.landlocked : true;
+      const isNotLandlocked = showNonLandlocked ? !country.landlocked : true;
+      return (
+        isIndependent && isNotIndependent && isLandlocked && isNotLandlocked
+      );
+    });
+
     setCurrentCountries(
-      countries.slice(indexOfFirstCountry, indexOfLastCountry)
+      filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry)
     );
-  }, [countries, currentPageState, countriesPerPage]);
+  }, [
+    countries,
+    currentPageState,
+    countriesPerPage,
+    showIndependent,
+    showNonIndependent,
+    showLandlocked,
+    showNonLandlocked,
+  ]);
 
   return (
     <div>
@@ -70,7 +93,17 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         countries={countries}
         countriesPerPage={countriesPerPage}
       />
-
+      <Filter
+        showIndependent={showIndependent}
+        setShowIndependent={setShowIndependent}
+        showLandlocked={showLandlocked}
+        setShowLandlocked={setShowLandlocked}
+        showNonLandlocked={showNonLandlocked}
+        setShowNonLandlocked={setShowNonLandlocked}
+        showNonIndependent={showNonIndependent}
+        setShowNonIndependent={setShowNonIndependent}
+      />{" "}
+      <br />
       {currentCountries.map((country, index) => (
         <div
           key={country.name.common}
@@ -104,7 +137,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
           </div>
         </div>
       ))}
-       <Pagination
+      <Pagination
         currentPageState={currentPageState}
         setCurrentPageState={setCurrentPageState}
         countries={countries}
