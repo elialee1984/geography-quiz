@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 
 const Filter = ({
-  showIndependent,
+  showIndependent = false,
   setShowIndependent,
-  showNonIndependent,
+  showNonIndependent = false,
   setShowNonIndependent,
-  showLandlocked,
+  showLandlocked = false,
   setShowLandlocked,
-  showNonLandlocked,
+  showNonLandlocked = false,
   setShowNonLandlocked,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +17,7 @@ const Filter = ({
     setIsOpen(!isOpen);
   };
 
+  /** DON'T DELETE!
 //   const handleClickOutside = (event) => {
 //     if (menuRef.current && !menuRef.current.contains(event.target)) {
 //       setIsOpen(false);
@@ -29,6 +30,8 @@ const Filter = ({
 //       document.removeEventListener("mousedown", handleClickOutside);
 //     };
 //   }, []);
+ */
+
 
   return (
     <div className="menu-container" ref={menuRef}>
@@ -36,25 +39,31 @@ const Filter = ({
       {isOpen && (
         <div className="menu-content">
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showIndependent}
-                onChange={() => setShowIndependent(!showIndependent)}
-              />
+            <button
+              type="button"
+              onClick={() => {
+                setShowIndependent(!showIndependent);
+                if (!showIndependent) {
+                  setShowNonIndependent(false);
+                }
+              }}
+            >
               Show only independent countries
-            </label>
+            </button>
           </div>
 
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showNonIndependent}
-                onChange={() => setShowNonIndependent(!showNonIndependent)}
-              />
+            <button
+              type="button"
+              onClick={() => {
+                setShowNonIndependent(!showNonIndependent);
+                if (!showNonIndependent) {
+                  setShowIndependent(false);
+                }
+              }}
+            >
               Show only non-independent countries
-            </label>
+            </button>
           </div>
 
           <div>
@@ -62,7 +71,12 @@ const Filter = ({
               <input
                 type="checkbox"
                 checked={showLandlocked}
-                onChange={() => setShowLandlocked(!showLandlocked)}
+                onChange={() => {
+                  setShowLandlocked(!showLandlocked);
+                  if (!showLandlocked) {
+                    setShowNonLandlocked(false);
+                  }
+                }}
               />
               Show only landlocked countries
             </label>
@@ -73,7 +87,12 @@ const Filter = ({
               <input
                 type="checkbox"
                 checked={showNonLandlocked}
-                onChange={() => setShowNonLandlocked(!showNonLandlocked)}
+                onChange={() => {
+                  setShowNonLandlocked(!showNonLandlocked);
+                  if (!showNonLandlocked) {
+                    setShowLandlocked(false);
+                  }
+                }}
               />
               Show only non-landlocked countries
             </label>
