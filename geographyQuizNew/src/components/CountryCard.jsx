@@ -26,10 +26,10 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   const [countries, setCountries] = useState([]);
   const [currentCountries, setCurrentCountries] = useState([]);
   const [currentPageState, setCurrentPageState] = useState(currentPage);
-  const [showIndependent, setShowIndependent] = useState(true);
+  const [showIndependent, setShowIndependent] = useState(false);
   const [showNonIndependent, setShowNonIndependent] = useState(false);
   const [showLandlocked, setShowLandlocked] = useState(false);
-  const [showNonLandlocked, setShowNonLandlocked] = useState(true);
+  const [showNonLandlocked, setShowNonLandlocked] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
