@@ -18,8 +18,8 @@ import CountryStatusIndependent from "./CountryStatusIndependent";
 import CountryStatusLandlocked from "./CountryStatusLandlocked";
 import CountryTimezones from "./CountryTimeZones";
 import CountryTopLevelDomain from "./CountryTopLevelDomain";
-import Pagination from "./navigation/Pagination";
 import Filter from "./navigation/filter/Filter";
+import Pagination from "./navigation/Pagination";
 
 const CountryCard = ({ currentPage, countriesPerPage }) => {
   const navigate = useNavigate();
@@ -30,6 +30,10 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   const [showNonIndependent, setShowNonIndependent] = useState(false);
   const [showLandlocked, setShowLandlocked] = useState(false);
   const [showNonLandlocked, setShowNonLandlocked] = useState(false);
+
+  // const [searchParams, setSearchParams] = useSearchParams();
+
+  // const singleCountry = searchParams.get("");
 
   useEffect(() => {
     const getData = async () => {
@@ -97,6 +101,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         countries={countries}
         countriesPerPage={countriesPerPage}
       />
+      {/* <Search /> */}
       <Filter
         showIndependent={showIndependent}
         setShowIndependent={setShowIndependent}
