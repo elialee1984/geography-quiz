@@ -10,6 +10,9 @@ const MainPage = () => {
       <button type="button" onClick={() => navigate("/countriesComplete")}>
         All Countries
       </button>{" "}
+      <button type="button" onClick={() => navigate("/countriesTable")}>
+        Countries Table
+      </button>{" "}
       <br />
       <button type="button" onClick={() => navigate("/")}>
       TO DO:

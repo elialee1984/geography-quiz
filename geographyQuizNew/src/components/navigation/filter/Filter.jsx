@@ -9,6 +9,10 @@ const Filter = ({
   setShowLandlocked,
   showNonLandlocked = false,
   setShowNonLandlocked,
+  showLeftSide = false,
+  setShowLeftSide,
+  showRightSide = false,
+  setShowRightSide
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -32,38 +36,41 @@ const Filter = ({
 //   }, []);
  */
 
-
   return (
     <div className="menu-container" ref={menuRef}>
       <button onClick={toggleMenu}>Filters</button>
       {isOpen && (
         <div className="menu-content">
           <div>
-            <button
-              type="button"
-              onClick={() => {
-                setShowIndependent(!showIndependent);
-                if (!showIndependent) {
-                  setShowNonIndependent(false);
-                }
-              }}
-            >
+            <label>
+              <input
+                type="checkbox"
+                checked={showIndependent}
+                onChange={() => {
+                  setShowIndependent(!showIndependent);
+                  if (!showIndependent) {
+                    setShowNonIndependent(false);
+                  }
+                }}
+              />
               Show only independent countries
-            </button>
+            </label>
           </div>
 
           <div>
-            <button
-              type="button"
-              onClick={() => {
-                setShowNonIndependent(!showNonIndependent);
-                if (!showNonIndependent) {
-                  setShowIndependent(false);
-                }
-              }}
-            >
+            <label>
+              <input
+                type="checkbox"
+                checked={showNonIndependent}
+                onChange={() => {
+                  setShowNonIndependent(!showNonIndependent);
+                  if (!showNonIndependent) {
+                    setShowIndependent(false);
+                  }
+                }}
+              />
               Show only non-independent countries
-            </button>
+            </label>
           </div>
 
           <div>
@@ -95,6 +102,38 @@ const Filter = ({
                 }}
               />
               Show only non-landlocked countries
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={showLeftSide}
+                onChange={() => {
+                  setShowLeftSide(!showLeftSide);
+                  if (!showLeftSide) {
+                    setShowRightSide(false);
+                  }
+                }}
+              />
+              Show only countries where the cars drive on the LEFT side of the road
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={showRightSide}
+                onChange={() => {
+                  setShowRightSide(!showRightSide);
+                  if (!showRightSide) {
+                    setShowLeftSide(false);
+                  }
+                }}
+              />
+              Show only countries where the cars drive on the RIGHT side of the road
             </label>
           </div>
         </div>

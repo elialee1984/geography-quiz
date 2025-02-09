@@ -22,7 +22,7 @@ import Filter from "./navigation/filter/Filter";
 import Pagination from "./navigation/Pagination";
 import Search from "./navigation/Search";
 
-const CountryCard = ({ currentPage, countriesPerPage }) => {
+const CountryTable = ({ currentPage, countriesPerPage }) => {
   const navigate = useNavigate();
   const [countries, setCountries] = useState([]);
   const [currentCountries, setCurrentCountries] = useState([]);
@@ -31,8 +31,6 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   const [showNonIndependent, setShowNonIndependent] = useState(false);
   const [showLandlocked, setShowLandlocked] = useState(false);
   const [showNonLandlocked, setShowNonLandlocked] = useState(false);
-  const [showLeftSide, setShowLeftSide] = useState(false);
-  const [showRightSide, setShowRightSide] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -62,21 +60,17 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         ? country.name.common.toLowerCase().includes(titleQuery.toLowerCase())
         : true;
 
-      const isIndependent = showIndependent ? country.independent : true;
-      const isNotIndependent = showNonIndependent ? !country.independent : true;
+      const isIndependent = showIndependent && !showNonIndependent;
+      const isNotIndependent = showNonIndependent && !showIndependent;
       const isLandlocked = showLandlocked ? country.landlocked : true;
       const isNotLandlocked = showNonLandlocked ? !country.landlocked : true;
-      const leftSide = showLeftSide ? country.car.side === "left" : true;
-      const rightSide = showRightSide ? country.car.side === "right" : true;
 
       return (
         matchesSearch &&
-        isIndependent &&
-        isNotIndependent &&
+        (isIndependent ? country.independent : true) &&
+        (isNotIndependent ? !country.independent : true) &&
         isLandlocked &&
-        isNotLandlocked &&
-        leftSide &&
-        rightSide
+        isNotLandlocked
       );
     });
 
@@ -92,8 +86,6 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     showNonIndependent,
     showLandlocked,
     showNonLandlocked,
-    showLeftSide,
-    showRightSide,
   ]);
 
   return (
@@ -125,12 +117,26 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         setShowNonLandlocked={setShowNonLandlocked}
         showNonIndependent={showNonIndependent}
         setShowNonIndependent={setShowNonIndependent}
-        showLeftSide={showLeftSide}
-        setShowLeftSide={setShowLeftSide}
-        showRightSide={showRightSide}
-        setShowRightSide={setShowRightSide}
       />{" "}
       <br />
+      <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {countries.map((index) => (
+          <tr key={index}>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
       {currentCountries.map((country, index) => (
         <div
           key={country.name.common}
@@ -174,4 +180,4 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   );
 };
 
-export default CountryCard;
+export default CountryTable;
