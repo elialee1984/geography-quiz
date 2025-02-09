@@ -12,13 +12,18 @@ const Filter = ({
   showLeftSide = false,
   setShowLeftSide,
   showRightSide = false,
-  setShowRightSide
+  setShowRightSide,
+  onFilterChange
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleFilterChange = () => {
+    onFilterChange();
   };
 
   /** DON'T DELETE!
@@ -48,6 +53,7 @@ const Filter = ({
                 checked={showIndependent}
                 onChange={() => {
                   setShowIndependent(!showIndependent);
+                  handleFilterChange();
                   if (!showIndependent) {
                     setShowNonIndependent(false);
                   }
@@ -64,6 +70,7 @@ const Filter = ({
                 checked={showNonIndependent}
                 onChange={() => {
                   setShowNonIndependent(!showNonIndependent);
+                  handleFilterChange();
                   if (!showNonIndependent) {
                     setShowIndependent(false);
                   }
@@ -80,6 +87,7 @@ const Filter = ({
                 checked={showLandlocked}
                 onChange={() => {
                   setShowLandlocked(!showLandlocked);
+                  handleFilterChange();
                   if (!showLandlocked) {
                     setShowNonLandlocked(false);
                   }
@@ -96,6 +104,7 @@ const Filter = ({
                 checked={showNonLandlocked}
                 onChange={() => {
                   setShowNonLandlocked(!showNonLandlocked);
+                  handleFilterChange();
                   if (!showNonLandlocked) {
                     setShowLandlocked(false);
                   }
@@ -112,6 +121,7 @@ const Filter = ({
                 checked={showLeftSide}
                 onChange={() => {
                   setShowLeftSide(!showLeftSide);
+                  handleFilterChange();
                   if (!showLeftSide) {
                     setShowRightSide(false);
                   }
@@ -128,6 +138,7 @@ const Filter = ({
                 checked={showRightSide}
                 onChange={() => {
                   setShowRightSide(!showRightSide);
+                  handleFilterChange();
                   if (!showRightSide) {
                     setShowLeftSide(false);
                   }

@@ -27,6 +27,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   const [countries, setCountries] = useState([]);
   const [currentCountries, setCurrentCountries] = useState([]);
   const [currentPageState, setCurrentPageState] = useState(currentPage);
+  const [filteredCountries, setFilteredCountries] = useState([]);
   const [showIndependent, setShowIndependent] = useState(false);
   const [showNonIndependent, setShowNonIndependent] = useState(false);
   const [showLandlocked, setShowLandlocked] = useState(false);
@@ -56,7 +57,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   useEffect(() => {
     const indexOfLastCountry = currentPageState * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-    const filteredCountries = countries.filter((country) => {
+    const filteringCountries = countries.filter((country) => {
       const titleQuery = searchParams.get("title");
       const matchesSearch = titleQuery
         ? country.name.common.toLowerCase().includes(titleQuery.toLowerCase())
@@ -81,8 +82,9 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     });
 
     setCurrentCountries(
-      filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry)
+      filteringCountries.slice(indexOfFirstCountry, indexOfLastCountry)
     );
+    setFilteredCountries(filteringCountries);
   }, [
     countries,
     currentPageState,
@@ -95,6 +97,20 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     showLeftSide,
     showRightSide,
   ]);
+
+  const handleFilterChange = () => {
+    const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
+    if (currentPageState > maxPage) {
+      setCurrentPageState(maxPage);
+    }
+  };
+
+  useEffect(() => {
+    const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
+    if (currentPageState > maxPage) {
+      setCurrentPageState(maxPage);
+    }
+  }, [filteredCountries, countriesPerPage]);
 
   return (
     <div>
@@ -114,6 +130,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         setCurrentPageState={setCurrentPageState}
         countries={countries}
         countriesPerPage={countriesPerPage}
+        filteredCountries={filteredCountries}
       />
       <Search setSearchParams={setSearchParams} />
       <Filter
@@ -129,6 +146,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         setShowLeftSide={setShowLeftSide}
         showRightSide={showRightSide}
         setShowRightSide={setShowRightSide}
+        onFilterChange={handleFilterChange}
       />{" "}
       <br />
       {currentCountries.map((country, index) => (
@@ -169,6 +187,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         setCurrentPageState={setCurrentPageState}
         countries={countries}
         countriesPerPage={countriesPerPage}
+        filteredCountries={filteredCountries}
       />
     </div>
   );

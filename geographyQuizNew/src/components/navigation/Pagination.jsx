@@ -5,6 +5,7 @@ const Pagination = ({
   setCurrentPageState,
   countries,
   countriesPerPage,
+  filteredCountries = []
 }) => {
   return (
     <div>
@@ -44,7 +45,7 @@ const Pagination = ({
             onKeyDown={({ key, target }) => {
               if (key === "Enter") {
                 const pageNumber = Number(target.value);
-                const maxPage = Math.ceil(countries.length / countriesPerPage);
+                const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
                 if (pageNumber >= 1 && pageNumber <= maxPage) {
                   setCurrentPageState(pageNumber);
                 }
@@ -56,12 +57,12 @@ const Pagination = ({
               setCurrentPageState((prev) =>
                 Math.min(
                   prev + 1,
-                  Math.ceil(countries.length / countriesPerPage)
+                  Math.ceil(filteredCountries.length / countriesPerPage)
                 )
               )
             }
             disabled={
-              currentPageState >= Math.ceil(countries.length / countriesPerPage)
+              currentPageState >= Math.ceil(filteredCountries.length / countriesPerPage)
             }
           >
             +1
@@ -71,13 +72,13 @@ const Pagination = ({
               setCurrentPageState((prev) =>
                 Math.min(
                   prev + 5,
-                  Math.ceil(countries.length / countriesPerPage)
+                  Math.ceil(filteredCountries.length / countriesPerPage)
                 )
               )
             }
             disabled={
               currentPageState >=
-              Math.ceil(countries.length / countriesPerPage - 4)
+              Math.ceil(filteredCountries.length / countriesPerPage - 4)
             }
           >
             +5
@@ -85,12 +86,12 @@ const Pagination = ({
           <button
             onClick={() =>
               setCurrentPageState(
-                Math.ceil(countries.length / countriesPerPage)
+                Math.ceil(filteredCountries.length / countriesPerPage)
               )
             }
             disabled={
               currentPageState ===
-              Math.ceil(countries.length / countriesPerPage)
+              Math.ceil(filteredCountries.length / countriesPerPage)
             }
           >
             Last page
@@ -103,7 +104,7 @@ const Pagination = ({
           justifyContent: "center",
         }}
       >
-        {currentPageState} of {Math.ceil(countries.length / countriesPerPage)}
+        {currentPageState} of {Math.ceil(filteredCountries.length / countriesPerPage)}
       </div>
     </div>
   );
