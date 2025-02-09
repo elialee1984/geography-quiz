@@ -19,8 +19,6 @@ const MainPage = () => {
         <div>Filter by</div>
         <ul>
           <li>... continent and/or region</li>
-          <li>... status of independence</li>
-          <li>... status of being landlocked</li>
           <li>... status of side of the road</li>
         </ul>
       </button>{" "}
