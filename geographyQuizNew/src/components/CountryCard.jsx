@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import CountryCapitals from "./CountryCapitals";
 import CountryCurrencies from "./CountryCurrencies";
@@ -20,6 +20,7 @@ import CountryTimezones from "./CountryTimeZones";
 import CountryTopLevelDomain from "./CountryTopLevelDomain";
 import Filter from "./navigation/filter/Filter";
 import Pagination from "./navigation/Pagination";
+import Search from "./navigation/Search";
 
 const CountryCard = ({ currentPage, countriesPerPage }) => {
   const navigate = useNavigate();
@@ -31,9 +32,9 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   const [showLandlocked, setShowLandlocked] = useState(false);
   const [showNonLandlocked, setShowNonLandlocked] = useState(false);
 
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // const singleCountry = searchParams.get("");
+  const singleCountry = searchParams.get("");
 
   useEffect(() => {
     const getData = async () => {
@@ -56,12 +57,18 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     const indexOfLastCountry = currentPageState * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const filteredCountries = countries.filter((country) => {
+      const titleQuery = searchParams.get("title");
+      const matchesSearch = titleQuery
+        ? country.name.common.toLowerCase().includes(titleQuery.toLowerCase())
+        : true;
+
       const isIndependent = showIndependent && !showNonIndependent;
       const isNotIndependent = showNonIndependent && !showIndependent;
       const isLandlocked = showLandlocked ? country.landlocked : true;
       const isNotLandlocked = showNonLandlocked ? !country.landlocked : true;
 
       return (
+        matchesSearch &&
         (isIndependent ? country.independent : true) &&
         (isNotIndependent ? !country.independent : true) &&
         isLandlocked &&
@@ -76,6 +83,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     countries,
     currentPageState,
     countriesPerPage,
+    searchParams,
     showIndependent,
     showNonIndependent,
     showLandlocked,
@@ -101,7 +109,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         countries={countries}
         countriesPerPage={countriesPerPage}
       />
-      {/* <Search /> */}
+      <Search setSearchParams={setSearchParams} />
       <Filter
         showIndependent={showIndependent}
         setShowIndependent={setShowIndependent}
