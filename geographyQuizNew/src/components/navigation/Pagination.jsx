@@ -1,7 +1,7 @@
 import React from "react";
 
 const Pagination = ({
-  currentPageState,
+  currentPageState = 1,
   setCurrentPageState,
   countriesPerPage,
   filteredCountries = [],

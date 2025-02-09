@@ -148,7 +148,6 @@ const Filter = ({
               Show only countries where the cars drive on the LEFT side of the road
             </label>
           </div>
-
         </div>
       )}
     </div>
