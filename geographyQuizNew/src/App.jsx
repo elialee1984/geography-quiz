@@ -12,7 +12,7 @@ import MainPage from "./components/MainPage";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const countriesPerPage = 20;
+  const countriesPerPage = 10;
 
   const router = createBrowserRouter(
     createRoutesFromElements(

@@ -4,7 +4,7 @@ const Pagination = ({
   currentPageState = 1,
   setCurrentPageState,
   countriesPerPage,
-  filteredCountries = []
+  filteredCountries = [],
 }) => {
   return (
     <div>
@@ -17,7 +17,7 @@ const Pagination = ({
         >
           <button
             onClick={() => setCurrentPageState(1)}
-            disabled={currentPageState === 1}
+            disabled={currentPageState <= 1}
           >
             First page
           </button>
@@ -29,7 +29,7 @@ const Pagination = ({
           </button>
           <button
             onClick={() => setCurrentPageState((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPageState === 1}
+            disabled={currentPageState <= 1}
           >
             -1
           </button>
@@ -44,7 +44,9 @@ const Pagination = ({
             onKeyDown={({ key, target }) => {
               if (key === "Enter") {
                 const pageNumber = Number(target.value);
-                const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
+                const maxPage = Math.ceil(
+                  filteredCountries.length / countriesPerPage
+                );
                 if (pageNumber >= 1 && pageNumber <= maxPage) {
                   setCurrentPageState(pageNumber);
                 }
@@ -61,7 +63,8 @@ const Pagination = ({
               )
             }
             disabled={
-              currentPageState >= Math.ceil(filteredCountries.length / countriesPerPage)
+              currentPageState >=
+              Math.ceil(filteredCountries.length / countriesPerPage)
             }
           >
             +1
@@ -89,7 +92,7 @@ const Pagination = ({
               )
             }
             disabled={
-              currentPageState ===
+              currentPageState >=
               Math.ceil(filteredCountries.length / countriesPerPage)
             }
           >
@@ -103,7 +106,8 @@ const Pagination = ({
           justifyContent: "center",
         }}
       >
-        {currentPageState} of {Math.ceil(filteredCountries.length / countriesPerPage)}
+        {currentPageState} of{" "}
+        {Math.ceil(filteredCountries.length / countriesPerPage)}
       </div>
     </div>
   );
