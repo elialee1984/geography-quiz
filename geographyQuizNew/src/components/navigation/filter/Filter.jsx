@@ -9,10 +9,10 @@ const Filter = ({
   setShowLandlocked,
   showNonLandlocked = false,
   setShowNonLandlocked,
-  showLeftSide = false,
-  setShowLeftSide,
   showRightSide = false,
   setShowRightSide,
+  showLeftSide = false,
+  setShowLeftSide,
   onFilterChange
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -119,6 +119,23 @@ const Filter = ({
             <label>
               <input
                 type="checkbox"
+                checked={showRightSide}
+                onChange={() => {
+                  setShowRightSide(!showRightSide);
+                  handleFilterChange();
+                  if (!showRightSide) {
+                    setShowLeftSide(false);
+                  }
+                }}
+              />
+              Show only countries where the cars drive on the RIGHT side of the road
+            </label>
+          </div>
+          
+          <div>
+            <label>
+              <input
+                type="checkbox"
                 checked={showLeftSide}
                 onChange={() => {
                   setShowLeftSide(!showLeftSide);
@@ -132,22 +149,6 @@ const Filter = ({
             </label>
           </div>
 
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showRightSide}
-                onChange={() => {
-                  setShowRightSide(!showRightSide);
-                  handleFilterChange();
-                  if (!showRightSide) {
-                    setShowLeftSide(false);
-                  }
-                }}
-              />
-              Show only countries where the cars drive on the RIGHT side of the road
-            </label>
-          </div>
         </div>
       )}
     </div>

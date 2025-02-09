@@ -94,21 +94,23 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     showNonIndependent,
     showLandlocked,
     showNonLandlocked,
+    showRightSide,
     showLeftSide,
-    showRightSide
   ]);
 
   const handleFilterChange = () => {
     const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
     if (currentPageState > maxPage) {
       setCurrentPageState(maxPage);
-    }
+    } 
   };
 
   useEffect(() => {
     const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
     if (currentPageState > maxPage) {
       setCurrentPageState(maxPage);
+    }else if (currentPageState < 1) {
+      setCurrentPageState(1);
     }
   }, [filteredCountries, countriesPerPage]);
 
