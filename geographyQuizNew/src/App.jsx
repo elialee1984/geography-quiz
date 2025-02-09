@@ -8,7 +8,6 @@ import {
 import { useState } from "react";
 import "./App.css";
 import CountryCard from "./components/CountryCard";
-import CountryTable from "./components/CountryTable";
 import MainPage from "./components/MainPage";
 
 const App = () => {
@@ -23,15 +22,6 @@ const App = () => {
           path="/countriesComplete"
           element={
             <CountryCard
-              currentPage={currentPage}
-              countriesPerPage={countriesPerPage}
-            />
-          }
-        />
-        <Route
-          path="/countriesTable"
-          element={
-            <CountryTable
               currentPage={currentPage}
               countriesPerPage={countriesPerPage}
             />
