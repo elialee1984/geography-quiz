@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 
-const Search = ({ setSearchParams }) => {
+const Search = () => {
   const searchInputRef = useRef();
   const navigate = useNavigate();
 
@@ -13,9 +13,8 @@ const Search = ({ setSearchParams }) => {
     };
     const queryString = createSearchParams(query);
 
-    setSearchParams(query);
     navigate({
-      pathname: "/countriesComplete",
+      pathname: "/articles",
       search: `?${queryString}`,
     });
   };
