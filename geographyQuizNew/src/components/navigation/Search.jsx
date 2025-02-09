@@ -19,12 +19,20 @@ const Search = () => {
     });
   };
 
+  const onClickHandler = (e) => {
+    if (e.target.name === "clearSearch") {
+      searchInputRef.current.value = "";
+      setSearchParams({});
+    }
+  };
+
   return (
-    <form onSubmit={onSearchHandler} className="search-form">
+    <form onSubmit={onSearchHandler} onClick={onClickHandler} className="search-form">
       <input type="text" className="search" ref={searchInputRef} />
       <button type="submit" className="search-button">
         🔎
       </button>
+      <button type="button" name="clearSearch" className="clear-search-button">Clear Search</button>
     </form>
   );
 };

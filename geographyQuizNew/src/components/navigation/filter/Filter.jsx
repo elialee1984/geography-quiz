@@ -119,23 +119,6 @@ const Filter = ({
             <label>
               <input
                 type="checkbox"
-                checked={showLeftSide}
-                onChange={() => {
-                  setShowLeftSide(!showLeftSide);
-                  handleFilterChange();
-                  if (!showLeftSide) {
-                    setShowRightSide(false);
-                  }
-                }}
-              />
-              Show only countries where the cars drive on the LEFT side of the road
-            </label>
-          </div>
-
-          <div>
-            <label>
-              <input
-                type="checkbox"
                 checked={showRightSide}
                 onChange={() => {
                   setShowRightSide(!showRightSide);
@@ -146,6 +129,23 @@ const Filter = ({
                 }}
               />
               Show only countries where the cars drive on the RIGHT side of the road
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={showLeftSide}
+                onChange={() => {
+                  setShowLeftSide(!showLeftSide);
+                  handleFilterChange();
+                  if (!showLeftSide) {
+                    setShowRightSide(false);
+                  }
+                }}
+              />
+              Show only countries where the cars drive on the LEFT side of the road
             </label>
           </div>
         </div>

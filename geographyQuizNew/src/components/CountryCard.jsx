@@ -47,6 +47,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         );
 
         setCountries(sortedData);
+        setFilteredCountries(sortedData);
       } catch (error) {
         console.error(error);
       }
@@ -58,26 +59,20 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     const indexOfLastCountry = currentPageState * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const filteringCountries = countries.filter((country) => {
-      const titleQuery = searchParams.get("title");
-      const matchesSearch = titleQuery
-        ? country.name.common.toLowerCase().includes(titleQuery.toLowerCase())
-        : true;
-
       const isIndependent = showIndependent ? country.independent : true;
       const isNotIndependent = showNonIndependent ? !country.independent : true;
       const isLandlocked = showLandlocked ? country.landlocked : true;
       const isNotLandlocked = showNonLandlocked ? !country.landlocked : true;
-      const leftSide = showLeftSide ? country.car.side === "left" : true;
       const rightSide = showRightSide ? country.car.side === "right" : true;
+      const leftSide = showLeftSide ? country.car.side === "left" : true;
 
       return (
-        matchesSearch &&
         isIndependent &&
         isNotIndependent &&
         isLandlocked &&
         isNotLandlocked &&
-        leftSide &&
-        rightSide
+        rightSide &&
+        leftSide
       );
     });
 
@@ -94,8 +89,8 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     showNonIndependent,
     showLandlocked,
     showNonLandlocked,
+    showRightSide,
     showLeftSide,
-    showRightSide
   ]);
 
   const handleFilterChange = () => {
@@ -106,9 +101,11 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
   };
 
   useEffect(() => {
-    const maxPage = Math.ceil(filteredCountries.length / countriesPerPage);
+    const maxPage = Math.max(1, Math.ceil(filteredCountries.length / countriesPerPage));
     if (currentPageState > maxPage) {
       setCurrentPageState(maxPage);
+    } else if (currentPageState < 1) {
+      setCurrentPageState(1);
     }
   }, [filteredCountries, countriesPerPage]);
 
@@ -128,7 +125,6 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
       <Pagination
         currentPageState={currentPageState}
         setCurrentPageState={setCurrentPageState}
-        countries={countries}
         countriesPerPage={countriesPerPage}
         filteredCountries={filteredCountries}
       />
@@ -142,10 +138,10 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
         setShowNonLandlocked={setShowNonLandlocked}
         showNonIndependent={showNonIndependent}
         setShowNonIndependent={setShowNonIndependent}
-        showLeftSide={showLeftSide}
-        setShowLeftSide={setShowLeftSide}
         showRightSide={showRightSide}
         setShowRightSide={setShowRightSide}
+        showLeftSide={showLeftSide}
+        setShowLeftSide={setShowLeftSide}
         onFilterChange={handleFilterChange}
       />{" "}
       <br />
@@ -185,7 +181,6 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
       <Pagination
         currentPageState={currentPageState}
         setCurrentPageState={setCurrentPageState}
-        countries={countries}
         countriesPerPage={countriesPerPage}
         filteredCountries={filteredCountries}
       />
