@@ -95,7 +95,7 @@ const CountryCard = ({ currentPage, countriesPerPage }) => {
     showLandlocked,
     showNonLandlocked,
     showLeftSide,
-    showRightSide,
+    showRightSide
   ]);
 
   const handleFilterChange = () => {

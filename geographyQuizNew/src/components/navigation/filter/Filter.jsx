@@ -41,6 +41,7 @@ const Filter = ({
 //   }, []);
  */
 
+
   return (
     <div className="menu-container" ref={menuRef}>
       <button onClick={toggleMenu}>Filters</button>
