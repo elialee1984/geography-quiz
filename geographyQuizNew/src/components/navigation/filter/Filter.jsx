@@ -60,7 +60,6 @@ const Filter = ({
             >
               Sovereign
             </button>
-
             <button
               type="button"
               className={showNonIndependent ? "active" : ""}
@@ -75,7 +74,6 @@ const Filter = ({
               Non-sovereign
             </button>
           </div>
-
           <div>
             <button
               type="button"
@@ -90,7 +88,6 @@ const Filter = ({
             >
               Landlocked
             </button>
-
             <button
               type="button"
               className={showNonLandlocked ? "active" : ""}
@@ -105,7 +102,6 @@ const Filter = ({
               Not landlocked
             </button>
           </div>
-
           <div>
             <button
               type="button"
@@ -118,12 +114,11 @@ const Filter = ({
                 }
               }}
             >
-              Driving on the RIGHT side of the road
+              Driving on the RIGHT side
             </button>
-
             <button
               type="button"
-              className={showLeftSide ? "active" : ""}
+              className={showLeftSide}
               onClick={() => {
                 setShowLeftSide(!showLeftSide);
                 handleFilterChange();
@@ -132,7 +127,7 @@ const Filter = ({
                 }
               }}
             >
-              Driving on the LEFT side of the road
+              Driving on the LEFT side
             </button>
           </div>
         </div>
