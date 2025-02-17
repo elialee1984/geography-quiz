@@ -13,7 +13,7 @@ const Filter = ({
   setShowRightSide,
   showLeftSide = false,
   setShowLeftSide,
-  onFilterChange
+  onFilterChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -41,112 +41,99 @@ const Filter = ({
 //   }, []);
  */
 
-
   return (
     <div className="menu-container" ref={menuRef}>
       <button onClick={toggleMenu}>Filters</button>
       {isOpen && (
         <div className="menu-content">
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showIndependent}
-                onChange={() => {
-                  setShowIndependent(!showIndependent);
-                  handleFilterChange();
-                  if (!showIndependent) {
-                    setShowNonIndependent(false);
-                  }
-                }}
-              />
-              Show only independent countries
-            </label>
+            <button
+              type="button"
+              className={showIndependent ? "active" : ""}
+              onClick={() => {
+                setShowIndependent(!showIndependent);
+                handleFilterChange();
+                if (!showIndependent) {
+                  setShowNonIndependent(false);
+                }
+              }}
+            >
+              Sovereign
+            </button>
+
+            <button
+              type="button"
+              className={showNonIndependent ? "active" : ""}
+              onClick={() => {
+                setShowNonIndependent(!showNonIndependent);
+                handleFilterChange();
+                if (!showNonIndependent) {
+                  setShowIndependent(false);
+                }
+              }}
+            >
+              Non-sovereign
+            </button>
           </div>
 
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showNonIndependent}
-                onChange={() => {
-                  setShowNonIndependent(!showNonIndependent);
-                  handleFilterChange();
-                  if (!showNonIndependent) {
-                    setShowIndependent(false);
-                  }
-                }}
-              />
-              Show only non-independent countries
-            </label>
+            <button
+              type="button"
+              className={showLandlocked ? "active" : ""}
+              onClick={() => {
+                setShowLandlocked(!showLandlocked);
+                handleFilterChange();
+                if (!showLandlocked) {
+                  setShowNonLandlocked(false);
+                }
+              }}
+            >
+              Landlocked
+            </button>
+
+            <button
+              type="button"
+              className={showNonLandlocked ? "active" : ""}
+              onClick={() => {
+                setShowNonLandlocked(!showNonLandlocked);
+                handleFilterChange();
+                if (!showNonLandlocked) {
+                  setShowLandlocked(false);
+                }
+              }}
+            >
+              Not landlocked
+            </button>
           </div>
 
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showLandlocked}
-                onChange={() => {
-                  setShowLandlocked(!showLandlocked);
-                  handleFilterChange();
-                  if (!showLandlocked) {
-                    setShowNonLandlocked(false);
-                  }
-                }}
-              />
-              Show only landlocked countries
-            </label>
-          </div>
+            <button
+              type="button"
+              className={showRightSide ? "active" : ""}
+              onClick={() => {
+                setShowRightSide(!showRightSide);
+                handleFilterChange();
+                if (!showRightSide) {
+                  setShowLeftSide(false);
+                }
+              }}
+            >
+              Driving on the RIGHT side of the road
+            </button>
 
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showNonLandlocked}
-                onChange={() => {
-                  setShowNonLandlocked(!showNonLandlocked);
-                  handleFilterChange();
-                  if (!showNonLandlocked) {
-                    setShowLandlocked(false);
-                  }
-                }}
-              />
-              Show only non-landlocked countries
-            </label>
-          </div>
-
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showRightSide}
-                onChange={() => {
-                  setShowRightSide(!showRightSide);
-                  handleFilterChange();
-                  if (!showRightSide) {
-                    setShowLeftSide(false);
-                  }
-                }}
-              />
-              Show only countries where the cars drive on the RIGHT side of the road
-            </label>
-          </div>
-          
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={showLeftSide}
-                onChange={() => {
-                  setShowLeftSide(!showLeftSide);
-                  handleFilterChange();
-                  if (!showLeftSide) {
-                    setShowRightSide(false);
-                  }
-                }}
-              />
-              Show only countries where the cars drive on the LEFT side of the road
-            </label>
+            <button
+              type="button"
+              className={showLeftSide ? "active" : ""}
+              onClick={() => {
+                setShowLeftSide(!showLeftSide);
+                handleFilterChange();
+                if (!showLeftSide) {
+                  setShowRightSide(false);
+                }
+              }}
+            >
+              Driving on the LEFT side of the road
+            </button>
           </div>
         </div>
       )}
